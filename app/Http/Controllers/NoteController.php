@@ -76,4 +76,16 @@ class NoteController extends Controller
         $note = Note::find($id);
         $note->destroy($id);
     }
+
+    /**
+     * Search resource from storage.
+     *
+     * @param  int  $note
+     * @return \Illuminate\Http\Response
+     */
+    public function search($name)
+    {
+        return Note::where('note', 'like',  '%'.$name.'%')->orWhere('category', 'like',  '%'.$name.'%')->get();
+        
+    }
 }

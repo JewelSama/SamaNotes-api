@@ -20,6 +20,7 @@ Route::post('/notes', [NoteController::class, 'store']);
 Route::get('/notes/{id}', [NoteController::class, 'show']);
 Route::put('/notes/{id}', [NoteController::class, 'update']);
 Route::delete('/notes/{id}', [NoteController::class, 'destroy']);
+Route::get('/notes/search/{name}', [NoteController::class, 'search']);
 Route::group(['middleware' => ['auth:sanctum']], function(){
     
 });
