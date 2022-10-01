@@ -10,9 +10,10 @@ class Note extends Model
     use HasFactory;
     protected $fillable = [
         'note',
+        'category',
     ];
 
-    public function category(){
-        $this->belongsTo(Category::class);
-    }
+    // public function category(){
+    //     $this->belongsTo(Category::class);
+    // }
 }
