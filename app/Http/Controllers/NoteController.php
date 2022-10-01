@@ -44,7 +44,8 @@ class NoteController extends Controller
      */
     public function show($id)
     {
-        //
+        $note =  Note::find($id);
+        return $note;
     }
 
     /**
@@ -56,7 +57,12 @@ class NoteController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $note = Note::find($id);
+        $note->update([
+            'category' => $request->category,
+            'note' => $request->note,
+        ]);
+        return $note;
     }
 
     /**
