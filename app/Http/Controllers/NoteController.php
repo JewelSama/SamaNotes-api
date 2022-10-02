@@ -14,7 +14,9 @@ class NoteController extends Controller
      */
     public function index()
     {
-        return Note::get();
+        
+        // return Note::get();
+        return auth()->user()->notes()->get();
     }
 
     /**
@@ -32,6 +34,7 @@ class NoteController extends Controller
         Note::create([
             'note' => $request->note,
             'category'=> $request->category,
+            'user_id' => auth()->id()
         ]);
         return response('Note created', 201);
     }
