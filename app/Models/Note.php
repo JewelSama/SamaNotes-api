@@ -11,9 +11,10 @@ class Note extends Model
     protected $fillable = [
         'note',
         'category',
+        'user_id',
     ];
 
-    // public function category(){
-    //     $this->belongsTo(Category::class);
-    // }
+    public function notes(){
+        $this->belongsTo(User::class, 'user_id');
+    }
 }
