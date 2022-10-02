@@ -16,11 +16,11 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/notes', [NoteController::class, 'index']);
-Route::post('/notes', [NoteController::class, 'store']);
 Route::get('/notes/{id}', [NoteController::class, 'show']);
 Route::put('/notes/{id}', [NoteController::class, 'update']);
 Route::delete('/notes/{id}', [NoteController::class, 'destroy']);
 Route::get('/notes/search/j={name}', [NoteController::class, 'search']);
+
 Route::group(['middleware' => ['auth:sanctum']], function(){
-    
+    Route::post('/notes', [NoteController::class, 'store']);    
 });
