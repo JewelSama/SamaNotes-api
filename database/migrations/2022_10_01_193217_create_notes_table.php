@@ -16,6 +16,7 @@ class CreateNotesTable extends Migration
         Schema::create('notes', function (Blueprint $table) {
             $table->id();
             $table->string('category');
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->longText('note');
             // $table->foreignId('category_id')->constrained()->onDelete('cascade');
             $table->timestamps();
