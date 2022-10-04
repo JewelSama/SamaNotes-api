@@ -17,7 +17,10 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::post('/register', [AuthController::class, 'register']);
-Route::post('/login', [AuthController::class, 'login']);
+Route::post('/login', [AuthController::class, 'login'])->name('login');
+Route::get('/login', function(){
+    return response('Login in to access your notes', 401);
+});
 
 Route::group(['middleware' => ['auth:sanctum']], function(){
     Route::post('/notes', [NoteController::class, 'store']);    

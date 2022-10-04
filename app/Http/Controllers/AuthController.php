@@ -30,18 +30,13 @@ class AuthController extends Controller
     }
 
     public function login(Request $request){
-        // auth()->user()->tokens()->delete();
-        // return auth()->user()->tokens();
         
         $fields = $request->validate([
             'email' => 'required|string',
             'password' => 'required|string',
         ]);
-        
-        //check email
+            //check email        
         $user = User::where('email', $fields['email'])->first();
-        $user->tokens()->delete();
-        
 
         //check password
         if(!$user || !Hash::check($fields['password'], $user->password)){

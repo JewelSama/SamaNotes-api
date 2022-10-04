@@ -16,6 +16,9 @@ class NoteController extends Controller
     {
         
         // return Note::get();
+        if(!auth()->user()){
+            return response('Log in to access your notes', 400);
+        }
         return auth()->user()->notes()->get();
     }
 
