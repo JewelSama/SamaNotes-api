@@ -19,7 +19,7 @@ class NoteController extends Controller
         if(!auth()->user()){
             return response('Log in to access your notes', 400);
         }
-        return auth()->user()->notes()->get();
+        return auth()->user()->notes()->latest()->get();
     }
 
     /**
@@ -34,12 +34,15 @@ class NoteController extends Controller
             'note' => 'required',
             'category' => 'required',
         ]);
-        Note::create([
+        $note = Note::create([
             'note' => $request->note,
             'category'=> $request->category,
             'user_id' => auth()->id()
         ]);
-        return response('Note created', 201);
+	$response = [
+		'note' => $note
+	];
+        return response($response, 201);
     }
 
     /**
@@ -68,7 +71,10 @@ class NoteController extends Controller
             'category' => $request->category,
             'note' => $request->note,
         ]);
-        return $note;
+        $response = [
+            'note' => $note
+        ];
+        return response($response, 200);
     }
 
     /**
