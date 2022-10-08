@@ -71,10 +71,7 @@ class NoteController extends Controller
             'category' => $request->category,
             'note' => $request->note,
         ]);
-        $response = [
-            'note' => $note
-        ];
-        return response($response, 200);
+        return auth()->user()->notes()->latest()->get();
     }
 
     /**
@@ -87,6 +84,7 @@ class NoteController extends Controller
     {
         $note = Note::find($id);
         $note->destroy($id);
+        return auth()->user()->notes()->latest()->get();
     }
 
     /**
